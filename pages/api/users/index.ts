@@ -1,16 +1,34 @@
-import { NextApiRequest, NextApiResponse } from 'next'
-import { sampleUserData } from '../../../utils/sample-data'
+import { Fragment } from 'react';
+import Head from 'next/head';
 
-const handler = (_req: NextApiRequest, res: NextApiResponse) => {
-  try {
-    if (!Array.isArray(sampleUserData)) {
-      throw new Error('Cannot find user data')
-    }
+import FeaturedPosts from '../../../components/home-page/featured-posts';
+import Hero from '../../../components/home-page/hero';
+import { getFeaturedPosts } from '../../../lib/posts-util';
 
-    res.status(200).json(sampleUserData)
-  } catch (err: any) {
-    res.status(500).json({ statusCode: 500, message: err.message })
-  }
+function HomePage(props:any) {
+  return (
+    <div>
+      <Head>
+        <title>Max' Blog</title>
+        <meta
+          name='description'
+          content='I post about programming and web development.'
+        />
+      </Head>
+      <Hero />
+      <FeaturedPosts posts={props.posts} />
+   dt>
+  );
 }
 
-export default handler
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts();
+
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+  };
+}
+
+export default HomePage;

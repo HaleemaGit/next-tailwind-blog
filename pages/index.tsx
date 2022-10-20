@@ -1,10 +1,34 @@
-import Link from 'next/link'
+import { Fragment } from 'react';
+import Head from 'next/head';
 
+import FeaturedPosts from '../components/home-page/featured-posts';
+import Hero from '../components/home-page/hero';
+import { getFeaturedPosts } from '../lib/posts-util';
 
-const IndexPage = () => (
-<div>
-  <h1>WELCOME!</h1>
-</div>
-)
+function HomePage(props: any) {
+  return (
+    <Fragment>
+      <Head>
+        <title>Hali's Next-Tailwind Blog</title>
+        <meta
+          name='description'
+          content='I post about programming and web development.'
+        />
+      </Head>
+      <Hero />
+      <FeaturedPosts posts={props.posts} />
+    </Fragment>
+  );
+}
 
-export default IndexPage
+export function getStaticProps() {
+  const featuredPosts = getFeaturedPosts();
+
+  return {
+    props: {
+      posts: featuredPosts,
+    },
+  };
+}
+
+export default HomePage;
