@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import { Fragment } from 'react';
-
 import PostContent from '../../components/posts/post-detail/post-content';
 import { getPostData, getPostsFiles } from '../../lib/posts-util';
+import prisma from '../../lib/prisma';
 
 function PostDetailPage(props:any) {
   return (
@@ -40,5 +40,6 @@ export function getStaticPaths() {
     fallback: false,
   };
 }
+
 
 export default PostDetailPage;

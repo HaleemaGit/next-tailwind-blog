@@ -1,9 +1,28 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
-
 import FeaturedPosts from '../components/home-page/featured-posts';
 import Hero from '../components/home-page/hero';
 import { getFeaturedPosts } from '../lib/posts-util';
+import prisma from '../lib/prisma';
+import { GetStaticProps } from 'next';
+
+
+
+// // index.tsx
+// export const getStaticProps: GetStaticProps = async () => {
+//   const feed = await prisma.post.findMany({
+//     where: { published: true },
+//     include: {
+//       author: {
+//         select: { name: true },
+//       },
+//     },
+//   });
+//   return {
+//     props: { feed },
+//     revalidate: 10,
+//   };
+// };
 
 function HomePage(props: any) {
   return (
