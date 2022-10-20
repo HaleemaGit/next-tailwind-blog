@@ -3,13 +3,6 @@ import path from 'path';
 import matter from 'gray-matter';
 
 
-// export interface postA {
-//   Date: string;
-//   isFeatured: Boolean;
-//   content: string;
-//     slug: any;
-// }
-
 const postsDirectory = path.join(process.cwd(), 'posts');
 
 export function getPostsFiles() {
